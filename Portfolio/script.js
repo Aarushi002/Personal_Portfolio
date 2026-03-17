@@ -116,9 +116,25 @@ function hideYay() {
   if (ctaYay) ctaYay.classList.remove("show");
 }
 if (hireBtn) {
-  hireBtn.addEventListener("click", function(e) {
+  function scrollToContact() {
+    const contactSection = document.getElementById("contact");
+    if (contactSection && typeof contactSection.scrollIntoView === "function") {
+      contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.hash = "#contact";
+    }
+  }
+  function handleHireInteraction() {
     showYay();
-  });
+    // In case the browser doesn't follow the hash for some reason, force scroll
+    setTimeout(scrollToContact, 50);
+  }
+  hireBtn.addEventListener("click", function () {
+    handleHireInteraction();
+  }, { passive: true });
+  hireBtn.addEventListener("touchend", function () {
+    handleHireInteraction();
+  }, { passive: true });
   hireBtn.addEventListener("mouseenter", showYay);
   hireBtn.addEventListener("mouseleave", hideYay);
   var ctaBlock = document.querySelector(".cta-block");
