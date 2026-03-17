@@ -104,6 +104,7 @@ if (typewriterEl) setTimeout(typeWriter, 500);
 const hireBtn = document.getElementById("hire-btn");
 const ctaYay = document.getElementById("cta-yay");
 const ctaSub = document.getElementById("cta-sub");
+const contactSection = document.getElementById("contact");
 function showYay() {
   if (ctaSub) ctaSub.classList.add("hide");
   if (ctaYay) ctaYay.classList.add("show");
@@ -119,8 +120,26 @@ if (hireBtn) {
   hireBtn.addEventListener("click", function(e) {
     e.preventDefault();
     showYay();
-    setTimeout(function() { window.location.href = "#contact"; }, 800);
+    setTimeout(function() {
+      if (contactSection && typeof contactSection.scrollIntoView === "function") {
+        contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.location.hash = "#contact";
+      }
+    }, 300);
   });
+  // Ensure it works on touch devices as well
+  hireBtn.addEventListener("touchstart", function(e) {
+    e.preventDefault();
+    showYay();
+    setTimeout(function() {
+      if (contactSection && typeof contactSection.scrollIntoView === "function") {
+        contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.location.hash = "#contact";
+      }
+    }, 300);
+  }, { passive: false });
   hireBtn.addEventListener("mouseenter", showYay);
   hireBtn.addEventListener("mouseleave", hideYay);
   var ctaBlock = document.querySelector(".cta-block");
