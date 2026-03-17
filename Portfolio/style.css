@@ -360,6 +360,24 @@ article .button button:hover{
   background-color: #fff;
   color: #CA965C;
 }
+.contact-email-btn{
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 25px;
+  font-weight: 400;
+  background: #CA965C;
+  color: #fff;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-decoration: none;
+}
+.contact-email-btn:hover{
+  border-color: #563727;
+  background-color: #fff;
+  color: #CA965C;
+}
 
 /* My Skills */
 .skills{
