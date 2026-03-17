@@ -12,17 +12,16 @@ window.addEventListener("pageshow", function (e) {
 // Sticky Navigation Menu JS Code
 let nav = document.querySelector("nav");
 let scrollBtn = document.querySelector(".scroll-button a");
-console.log(scrollBtn);
 let val;
 window.onscroll = function() {
+  if (!nav) return;
   if(document.documentElement.scrollTop > 20){
     nav.classList.add("sticky");
-    scrollBtn.style.display = "block";
+    if (scrollBtn) scrollBtn.style.display = "block";
   }else{
     nav.classList.remove("sticky");
-    scrollBtn.style.display = "none";
+    if (scrollBtn) scrollBtn.style.display = "none";
   }
-
 }
 
 // Side NavIgation Menu JS Code
@@ -30,19 +29,19 @@ let body = document.querySelector("body");
 let navBar = document.querySelector(".navibar");
 let menuBtn = document.querySelector(".menu-btn");
 let cancelBtn = document.querySelector(".cancel-btn");
-menuBtn.onclick = function(){
+if (menuBtn) menuBtn.onclick = function(){
   navBar.classList.add("active");
   menuBtn.style.opacity = "0";
   menuBtn.style.pointerEvents = "none";
   body.style.overflow = "hidden";
-  scrollBtn.style.pointerEvents = "none";
+  if (scrollBtn) scrollBtn.style.pointerEvents = "none";
 }
-cancelBtn.onclick = function(){
+if (cancelBtn) cancelBtn.onclick = function(){
   navBar.classList.remove("active");
   menuBtn.style.opacity = "1";
   menuBtn.style.pointerEvents = "auto";
   body.style.overflow = "auto";
-  scrollBtn.style.pointerEvents = "auto";
+  if (scrollBtn) scrollBtn.style.pointerEvents = "auto";
 }
 
 // Side Navigation Bar Close While We Click On Navigation Links
@@ -116,25 +115,9 @@ function hideYay() {
   if (ctaYay) ctaYay.classList.remove("show");
 }
 if (hireBtn) {
-  function scrollToContact() {
-    const contactSection = document.getElementById("contact");
-    if (contactSection && typeof contactSection.scrollIntoView === "function") {
-      contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      window.location.hash = "#contact";
-    }
-  }
-  function handleHireInteraction() {
-    showYay();
-    // In case the browser doesn't follow the hash for some reason, force scroll
-    setTimeout(scrollToContact, 50);
-  }
   hireBtn.addEventListener("click", function () {
-    handleHireInteraction();
-  }, { passive: true });
-  hireBtn.addEventListener("touchend", function () {
-    handleHireInteraction();
-  }, { passive: true });
+    showYay();
+  });
   hireBtn.addEventListener("mouseenter", showYay);
   hireBtn.addEventListener("mouseleave", hideYay);
   var ctaBlock = document.querySelector(".cta-block");

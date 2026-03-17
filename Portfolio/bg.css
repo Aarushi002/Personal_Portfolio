@@ -19,6 +19,7 @@ section .bgrow{
     font-size: 45px;
     transform: rotate(-30deg);
     pointer-events: none;
+    z-index: 0;
 }
 
 .bgrow i{

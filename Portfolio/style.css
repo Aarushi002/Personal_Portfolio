@@ -119,6 +119,7 @@ nav.sticky .menu-btn{
 .hero-section{
   position: relative;
   min-height: 100vh;
+  z-index: 0;
 }
 .home{
   min-height: 100vh;
@@ -197,6 +198,7 @@ nav.sticky .menu-btn{
   align-items: flex-start;
   gap: 0.45rem;
   position: relative;
+  z-index: 10;
 }
 .home .cta-btn{
   display: inline-block;
@@ -206,6 +208,10 @@ nav.sticky .menu-btn{
   font-weight: 600;
   background: #de9e48;
   color: #fff;
+  position: relative;
+  z-index: 11;
+  cursor: pointer;
+  touch-action: manipulation;
   text-decoration: none;
   border: 2px solid transparent;
   transition: all 0.25s ease;
