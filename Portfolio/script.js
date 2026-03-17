@@ -1,3 +1,14 @@
+// On refresh or load, scroll to hero section
+if (typeof history !== "undefined" && history.scrollRestoration) {
+  history.scrollRestoration = "manual";
+}
+window.addEventListener("load", function () {
+  window.scrollTo(0, 0);
+});
+window.addEventListener("pageshow", function (e) {
+  if (e.persisted) window.scrollTo(0, 0);
+});
+
 // Sticky Navigation Menu JS Code
 let nav = document.querySelector("nav");
 let scrollBtn = document.querySelector(".scroll-button a");

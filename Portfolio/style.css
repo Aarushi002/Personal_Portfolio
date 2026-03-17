@@ -6,6 +6,12 @@
   text-decoration: none;
   scroll-behavior: smooth;
 }
+html{
+  overflow-x: hidden;
+}
+body{
+  overflow-x: hidden;
+}
 
 /*Scroll Bar CSS */
 ::-webkit-scrollbar {
@@ -159,6 +165,7 @@ nav.sticky .menu-btn{
   line-height: 1.08;
   margin: 0 0 0.4em;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 .home .typewriter-wrap{
   display: inline-flex;
@@ -454,7 +461,43 @@ article .button button:hover{
   background: transparent;
 }
 .work-category--tinted{
-  background: rgba(122, 67, 29, 0.06);
+  background: #632626;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  padding: 1.5rem 1rem 2rem;
+  box-sizing: border-box;
+}
+.work-category--tinted .work-category-title{
+  color: rgba(255, 255, 255, 0.95);
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.work-category--tinted .boxes{
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.work-category--tinted .box{
+  background: #fff;
+  color: #372c2e;
+}
+.work-category--tinted .box .topic,
+.work-category--tinted .box p{
+  color: #372c2e;
+}
+.work-category--tinted .box:hover .topic,
+.work-category--tinted .box:hover p{
+  color: #fff;
+}
+.work-category--tinted .task_btn a{
+  color: #fff;
+}
+.work-category--tinted .task_btn a:hover{
+  color: #563727;
 }
 .work-category-title{
   font-size: 1.25rem;
@@ -483,12 +526,107 @@ article .button button:hover{
   padding: 30px 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
   cursor: default;
-  transition: all 0.4s ease;
+  transition: background 0.4s ease, color 0.4s ease;
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
 }
-.work .boxes .box:hover{
+.work .boxes .box:hover,
+.work .boxes .box:focus,
+.work .boxes .box:focus-within{
   background: #563727;
   color: #fff;
+  border: none !important;
+  outline: none !important;
 }
+.work .boxes .box *:focus{
+  outline: none !important;
+}
+.work .boxes .box .task_btn a,
+.work .boxes .box .task_btn button{
+  outline: none !important;
+}
+/* Project preview (image + hover blur + name overlay) */
+.box--with-preview{
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 24px;
+}
+.box--with-preview .project-preview{
+  position: relative;
+  width: calc(100% + 20px);
+  margin: -30px -10px 16px -10px;
+  height: 150px;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  z-index: 0;
+}
+.box--with-preview .topic,
+.box--with-preview p,
+.box--with-preview .button{
+  position: relative;
+  z-index: 1;
+}
+.box--with-preview .project-preview img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.35s ease;
+  border: none;
+  outline: none;
+  vertical-align: middle;
+}
+.box--with-preview .project-preview:hover img{
+  filter: blur(5px);
+}
+/* Placeholder preview (no external image) */
+.box--with-preview .project-preview-bg{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #1e3a5f 0%, #0d1f33 100%);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: filter 0.35s ease;
+}
+.box--with-preview .project-preview--placeholder:hover .project-preview-bg{
+  filter: blur(6px);
+}
+.box--with-preview .project-preview-name{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.box--with-preview .project-preview:hover .project-preview-name{
+  opacity: 1;
+}
+.box--with-preview .project-preview--no-image{
+  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+}
+.box--with-preview .project-preview--no-image .project-preview-name{
+  opacity: 1;
+}
+
 .work .boxes .box .icon{
   height: 50px;
   width: 50px;
@@ -563,6 +701,9 @@ footer .text span a:hover{
   }
 }
 @media (max-width: 1000px) {
+  article .content{
+    width: 90%;
+  }
   .about .about-details{
     justify-content: center;
     flex-direction: column;
@@ -580,11 +721,16 @@ footer .text span a:hover{
     margin: 20px 0;
     width: calc(100% / 2 - 20px);
   }
+  .work-category--tinted .work-category-title,
+  .work-category--tinted .boxes{
+    max-width: 92%;
+  }
 }
 @media (max-width: 900px) {
   .about .left img{
     height: 350px;
     width: 350px;
+    max-width: 100%;
   }
   .home .home-content{
     grid-template-columns: 1fr;
@@ -657,16 +803,104 @@ footer .text span a:hover{
     margin: 20px 0;
     width: 100%;
   }
+  .work-category--tinted{
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .work-category--tinted .work-category-title,
+  .work-category--tinted .boxes{
+    max-width: 100%;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+  .work-category{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .box--with-preview .project-preview{
+    height: 130px;
+    margin: -20px -8px 12px -8px;
+    width: calc(100% + 16px);
+  }
+  .box--with-preview .project-preview-name{
+    font-size: 0.9rem;
+  }
   .contact .text{
     width: 100%;
-}
+    padding: 0 0.5rem;
+  }
+  article .button button,
+  .contact-email-btn{
+    padding: 10px 18px;
+    font-size: 1.1rem;
+    min-height: 44px;
+  }
 }
 
 @media (max-width: 500px){
+  article .content{
+    width: 95%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
   .home .text-two{
     font-size: 45px;
+    white-space: normal;
   }
   .home .text-three{
     font-size: 23px;
+  }
+  .home .home-content{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .about-details .right,
+  .about .about-details .left{
+    padding: 0 0.5rem;
+  }
+  .skill-category{
+    padding: 1rem;
+  }
+  .skill-item{
+    padding: 0.3rem 0.5rem;
+    font-size: 0.85rem;
+  }
+  .skill-item img,
+  .skill-item i{
+    width: 18px;
+    height: 18px;
+    font-size: 0.9rem;
+  }
+  .work .boxes .box{
+    padding: 20px 8px;
+  }
+  .box--with-preview .project-preview{
+    height: 110px;
+    margin: -20px -8px 10px -8px;
+  }
+  .box--with-preview .project-preview-name{
+    font-size: 0.8rem;
+  }
+  .work-category-title{
+    font-size: 1.1rem;
+  }
+  .contact .text{
+    width: 100%;
+    padding: 0 0.25rem;
+  }
+}
+
+@media (max-width: 380px){
+  .home .text-two{
+    font-size: 2rem;
+  }
+  nav .navibar .logo a{
+    font-size: 1.5rem;
+  }
+  .work .boxes .box .topic{
+    font-size: 1rem;
+  }
+  .box--with-preview .project-preview{
+    height: 100px;
   }
 }
