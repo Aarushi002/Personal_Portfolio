@@ -735,7 +735,7 @@ footer .text span a:hover{
   .home .home-content{
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
-    padding: clamp(88px, 12vh, 100px) 1.5rem 2rem;
+    padding: clamp(100px, 14vh, 120px) 1.5rem 2rem;
     gap: 1.5rem;
   }
   .home .home-text-block{
@@ -837,6 +837,12 @@ footer .text span a:hover{
   }
 }
 
+@media (max-width: 600px){
+  .home .home-content{
+    padding-top: 110px;
+  }
+}
+
 @media (max-width: 500px){
   article .content{
     width: 95%;
@@ -853,6 +859,7 @@ footer .text span a:hover{
   .home .home-content{
     padding-left: 1rem;
     padding-right: 1rem;
+    padding-top: 100px;
   }
   .about-details .right,
   .about .about-details .left{
