@@ -18,6 +18,7 @@ section .bgrow{
     white-space: nowrap;
     font-size: 45px;
     transform: rotate(-30deg);
+    pointer-events: none;
 }
 
 .bgrow i{
@@ -26,6 +27,7 @@ section .bgrow{
     padding: 0 5px;
     user-select: none;
     cursor: default;
+    pointer-events: none;
 }
 .bgrow i:hover{
     transition: 0s;
