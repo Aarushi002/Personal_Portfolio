@@ -57,11 +57,11 @@ for (var i = 0; i < navLinks.length; i++) {
 // Typewriter effect for role titles
 const typewriterEl = document.getElementById("typewriter");
 const roles = [
-  "Software Developer",
-  "Frontend Engineer",
-  "Cinephile",
-  "Full-Stack Developer",
-  "Bibliophile",
+  "Software Developer 💻",
+  "Frontend Engineer 🧩",
+  "Cinephile 🎬",
+  "Full-Stack Developer 🖥️",
+  "Bibliophile 📚",
   "Debug Detective 🐛"
 ];
 let roleIndex = 0;
